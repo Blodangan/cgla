@@ -147,23 +147,23 @@ Matrix<T, 4, 4> lookAt(const Vector<T, 3>& eye, const Vector<T, 3>& target, cons
 }
 
 template<typename T>
-Matrix<T, 4, 4> orthographic(T left, T right, T bottom, T top, T zNear, T zFar)
+Matrix<T, 4, 4> orthographic(T left, T right, T bottom, T top, T near, T far)
 {
     Matrix<T, 4, 4> res{};
 
     res[0] = static_cast<T>(2) / (right - left);
     res[5] = static_cast<T>(2) / (top - bottom);
-    res[10] = -static_cast<T>(2) / (zFar - zNear);
+    res[10] = -static_cast<T>(2) / (far - near);
     res[12] = -(right + left) / (right - left);
     res[13] = -(top + bottom) / (top - bottom);
-    res[14] = -(zFar + zNear) / (zFar - zNear);
+    res[14] = -(far + near) / (far - near);
     res[15] = static_cast<T>(1);
 
     return res;
 }
 
 template<typename T>
-Matrix<T, 4, 4> perspective(T fovy, T aspect, T zNear, T zFar)
+Matrix<T, 4, 4> perspective(T fovy, T aspect, T near, T far)
 {
     Matrix<T, 4, 4> res{};
 
@@ -171,9 +171,9 @@ Matrix<T, 4, 4> perspective(T fovy, T aspect, T zNear, T zFar)
 
     res[0] = invTan / aspect;
     res[5] = invTan;
-    res[10] = -(zFar + zNear) / (zFar - zNear);
+    res[10] = -(far + near) / (far - near);
     res[11] = -static_cast<T>(1);
-    res[14] = -(static_cast<T>(2) * zFar * zNear) / (zFar - zNear);
+    res[14] = -(static_cast<T>(2) * far * near) / (far - near);
 
     return res;
 }
