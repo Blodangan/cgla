@@ -2,6 +2,7 @@
 #include <cmath>
 #include <algorithm>
 #include <ostream>
+#include "config.hpp"
 #include "vector.hpp"
 
 namespace cgla {
@@ -249,6 +250,7 @@ inline Matrix<T, M, N> operator/(Matrix<T, M, N> lhs, U rhs)
     return lhs /= rhs;
 }
 
+#ifdef CGLA_OSTREAM_OVERLOADS
 template<typename T, std::size_t M, std::size_t N>
 std::ostream& operator<<(std::ostream& lhs, const Matrix<T, M, N>& rhs)
 {
@@ -273,6 +275,7 @@ std::ostream& operator<<(std::ostream& lhs, const Matrix<T, M, N>& rhs)
 
     return lhs;
 }
+#endif
 
 template<typename T, std::size_t M, std::size_t N>
 inline Matrix<T, N, M> transpose(const Matrix<T, M, N>& mat)

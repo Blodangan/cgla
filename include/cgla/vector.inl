@@ -2,6 +2,7 @@
 #include <cmath>
 #include <ostream>
 #include <type_traits>
+#include "config.hpp"
 
 namespace cgla {
 
@@ -134,6 +135,118 @@ inline T Vector<T, N>::w() const
 {
     return values[3];
 }
+
+#ifdef CGLA_RGBA_ACCESSORS
+template<typename T, std::size_t N>
+inline T& Vector<T, N>::r()
+{
+    return values[0];
+}
+
+template<typename T, std::size_t N>
+inline T Vector<T, N>::r() const
+{
+    return values[0];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::g()
+{
+    return values[1];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::g() const
+{
+    return values[1];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::b()
+{
+    return values[2];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::b() const
+{
+    return values[2];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::a()
+{
+    return values[3];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::a() const
+{
+    return values[3];
+}
+#endif
+
+#ifdef CGLA_STPQ_ACCESSORS
+template<typename T, std::size_t N>
+inline T& Vector<T, N>::s()
+{
+    return values[0];
+}
+
+template<typename T, std::size_t N>
+inline T Vector<T, N>::s() const
+{
+    return values[0];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::t()
+{
+    return values[1];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::t() const
+{
+    return values[1];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::p()
+{
+    return values[2];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::p() const
+{
+    return values[2];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T& Vector<T, N>::q()
+{
+    return values[3];
+}
+
+template<typename T, std::size_t N>
+template<std::size_t, typename>
+inline T Vector<T, N>::q() const
+{
+    return values[3];
+}
+#endif
 
 template<typename T, std::size_t N>
 inline Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& rhs)
@@ -285,6 +398,7 @@ inline Vector<T, N> operator/(Vector<T, N> lhs, const Vector<T, N>& rhs)
     return lhs /= rhs;
 }
 
+#ifdef CGLA_OSTREAM_OVERLOADS
 template<typename T, std::size_t N>
 std::ostream& operator<<(std::ostream& lhs, const Vector<T, N>& rhs)
 {
@@ -297,6 +411,7 @@ std::ostream& operator<<(std::ostream& lhs, const Vector<T, N>& rhs)
 
     return lhs;
 }
+#endif
 
 template<typename T, std::size_t N>
 inline T dot(const Vector<T, N>& u, const Vector<T, N>& v)
@@ -363,6 +478,40 @@ inline Vector<T, 3> xyz(const Vector<T, N>& v)
 {
     return swizzle<0, 1, 2>(v);
 }
+
+#ifdef CGLA_RGBA_ACCESSORS
+template<typename T, std::size_t N>
+inline Vector<T, 3> rgb(const Vector<T, N>& v)
+{
+    return swizzle<0, 1, 2>(v);
+}
+
+template<typename T, std::size_t N>
+inline Vector<T, 3> bgr(const Vector<T, N>& v)
+{
+    return swizzle<2, 1, 0>(v);
+}
+
+template<typename T, std::size_t N>
+inline Vector<T, 4> bgra(const Vector<T, N>& v)
+{
+    return swizzle<2, 1, 0, 3>(v);
+}
+#endif
+
+#ifdef CGLA_STPQ_ACCESSORS
+template<typename T, std::size_t N>
+inline Vector<T, 2> st(const Vector<T, N>& v)
+{
+    return swizzle<0, 1>(v);
+}
+
+template<typename T, std::size_t N>
+inline Vector<T, 2> pq(const Vector<T, N>& v)
+{
+    return swizzle<2, 3>(v);
+}
+#endif
 
 namespace detail {
     template<std::size_t Index, typename T, std::size_t N>
