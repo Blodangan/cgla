@@ -163,6 +163,22 @@ Matrix<T, 4, 4> orthographic(T left, T right, T bottom, T top, T near, T far)
 }
 
 template<typename T>
+Matrix<T, 4, 4> frustum(T left, T right, T bottom, T top, T near, T far)
+{
+    Matrix<T, 4, 4> res{};
+
+    res[0] = (static_cast<T>(2) * near) / (right - left);
+    res[5] = (static_cast<T>(2) * near) / (top - bottom);
+    res[8] = (right + left) / (right - left);
+    res[9] = (top + bottom) / (top - bottom);
+    res[10] = -(far + near) / (far - near);
+    res[11] = -static_cast<T>(1);
+    res[14] = -(static_cast<T>(2) * far * near) / (far - near);
+
+    return res;
+}
+
+template<typename T>
 Matrix<T, 4, 4> perspective(T fovy, T aspect, T near, T far)
 {
     Matrix<T, 4, 4> res{};
