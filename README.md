@@ -72,10 +72,53 @@ v.y() = 1; // v = {1, 1, 3, 4, 5}
 v.w() = 3; // v = {1, 1, 3, 3, 5}
 ```
 
-* `r()`, `g()`, `b()`, `a()` accessors. See [config.hpp]()
-* `s()`, `t()`, `p()`, `q()` accessors. See [config.hpp]()
+* `r()`, `g()`, `b()`, `a()` accessors. See [config.hpp](#confighpp)
+* `s()`, `t()`, `p()`, `q()` accessors. See [config.hpp](#confighpp)
 
 #### Operators
+
+* Assignment
+```cpp
+cgla::Vector3i u{1, 2, 3};
+cgla::Vector3i v;
+v = u; // v = {1, 2, 3}
+```
+
+* Unary operator `-`
+```cpp
+cgla::Vector3i u{1, 2, 3};
+cgla::Vector3i v{-u}; // v = {-1, -2, -3}
+```
+
+* Binary operators `+=`, `-=`, `*=`, `/=`, `+`, `-`, `*`, `/` between `Vector<T, N>` work component-wise
+```cpp
+cgla::Vector3i u{1, 2, 3};
+cgla::Vector3i v{5, 4, 3};
+u = v / u; // u = {5, 2, 1}
+v += u; // v = {10, 6, 4}
+```
+
+* Binary operators `*=`, `/=`, `*`, `/` between `Vector<T, N>` and scalar of type `U` work component-wise
+```cpp
+cgla::Vector3f u{1.f, 2.f, 4.f};
+cgla::Vector3f v{3 * u}; // v = {3.f, 6.f, 12.f}
+cgla::Vector3f w{1 / u}; // w = {1.f, 0.5f, 0.25f}
+```
+
+* Comparison operators `==`, `!=`, `<`
+```cpp
+cgla::Vector3i u{1, 2, 3};
+cgla::Vector3i v{4, 5, 6};
+bool eq{u == v}; // false
+bool neq{u != v}; // true
+bool lt{u < v}; // true (lexicographic order)
+```
+
+* `<<` operator for `std::ostream`
+```cpp
+cgla::Vector3i u{1, 2, 3};
+std::cout << u; // prints (1, 2, 3)
+```
 
 #### Functions
 
