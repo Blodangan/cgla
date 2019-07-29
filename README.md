@@ -122,6 +122,57 @@ std::cout << u; // prints (1, 2, 3)
 
 #### Functions
 
+* `dot` : returns the dot product of two vectors
+```cpp
+T dot(Vector<T, N> u, Vector<T, N> v)
+```
+
+* `cross` : returns the cross product of two vectors
+```cpp
+Vector<T, 3> cross(Vector<T, 3> u, Vector<T, 3> v)
+```
+
+* `lengthSquared` : returns the squared length of a vector
+```cpp
+T lengthSquared(Vector<T, N> v)
+```
+
+* `length` : returns the length of a vector
+```cpp
+float length(Vector<T, N> v)
+```
+
+* `distanceSquared` : returns the squared distance between two vectors
+```cpp
+T distanceSquared(Vector<T, N> u, Vector<T, N> v)
+```
+
+* `distance` : returns the distance between two vectors
+```cpp
+float distance(Vector<T, N> u, Vector<T, N> v)
+```
+
+* `normalize` : returns the normalized form of this vector
+```cpp
+Vector<T, N> normalize(Vector<T, N> v)
+```
+
+* `swizzle` :
+```cpp
+cgla::Vector3i u{1, 2, 3};
+cgla::Vector<int, 5> v{cgla::swizzle<2, 2, 1, 0, 0>(u)}; // v = {3, 3, 2, 1, 1}
+```
+
+* `xy` : shorthand for `swizzle<0, 1>`
+* `xyz` : shorthand for `swizzle<0, 1, 2>`
+
+* `rgb` : shorthand for `swizzle<0, 1, 2>`. See [config.hpp](#confighpp)
+* `bgr` : shorthand for `swizzle<2, 1, 0>`. See [config.hpp](#confighpp)
+* `bgra` : shorthand for `swizzle<2, 1, 0, 3>`. See [config.hpp](#confighpp)
+
+* `st` : shorthand for `swizzle<0, 1>`. See [config.hpp](#confighpp)
+* `pq` : shorthand for `swizzle<2, 3>`. See [config.hpp](#confighpp)
+
 ### [matrix.hpp](include/cgla/matrix.hpp)
 
 ### [transform.hpp](include/cgla/transform.hpp)
