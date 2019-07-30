@@ -87,7 +87,7 @@ v = u; // v = {1, 2, 3}
 * Unary operator `-`
 ```cpp
 cgla::Vector3i u{1, 2, 3};
-cgla::Vector3i v{-u}; // v = {-1, -2, -3}
+cgla::Vector3i v = -u; // v = {-1, -2, -3}
 ```
 
 * Binary operators `+=`, `-=`, `*=`, `/=`, `+`, `-`, `*`, `/` between `Vector<T, N>` work component-wise
@@ -101,17 +101,17 @@ v += u; // v = {10, 6, 4}
 * Binary operators `*=`, `/=`, `*`, `/` between `Vector<T, N>` and scalar of type `U` work component-wise
 ```cpp
 cgla::Vector3f u{1.f, 2.f, 4.f};
-cgla::Vector3f v{3 * u}; // v = {3.f, 6.f, 12.f}
-cgla::Vector3f w{1 / u}; // w = {1.f, 0.5f, 0.25f}
+cgla::Vector3f v = 3 * u; // v = {3.f, 6.f, 12.f}
+cgla::Vector3f w = 1 / u; // w = {1.f, 0.5f, 0.25f}
 ```
 
 * Comparison operators `==`, `!=`, `<`
 ```cpp
 cgla::Vector3i u{1, 2, 3};
 cgla::Vector3i v{4, 5, 6};
-bool eq{u == v}; // false
-bool neq{u != v}; // true
-bool lt{u < v}; // true (lexicographic order)
+bool eq = (u == v); // eq = false
+bool neq = (u != v); // neq = true
+bool lt = (u < v); // lt = true (lexicographic order)
 ```
 
 * `<<` operator for `std::ostream`
@@ -152,15 +152,18 @@ T distanceSquared(Vector<T, N> u, Vector<T, N> v)
 float distance(Vector<T, N> u, Vector<T, N> v)
 ```
 
-* `normalize` : returns the normalized form of this vector
+* `normalize` : returns the normalized form of a vector
 ```cpp
 Vector<T, N> normalize(Vector<T, N> v)
 ```
 
-* `swizzle` :
+* `swizzle` : returns a vector from a combination of components
+```cpp
+template<std::size_t... Indices> Vector<T, sizeof...(Indices)> swizzle(Vector<T, N> v)
+```
 ```cpp
 cgla::Vector3i u{1, 2, 3};
-cgla::Vector<int, 5> v{cgla::swizzle<2, 2, 1, 0, 0>(u)}; // v = {3, 3, 2, 1, 1}
+cgla::Vector<int, 5> v = cgla::swizzle<2, 2, 1, 0, 0>(u); // v = {3, 3, 2, 1, 1}
 ```
 
 * `xy` : shorthand for `swizzle<0, 1>`
