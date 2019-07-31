@@ -182,6 +182,16 @@ cgla::Vector<int, 5> v = cgla::swizzle<2, 2, 1, 0, 0>(u); // v = {3, 3, 2, 1, 1}
 
 ### [config.hpp](include/cgla/config.hpp)
 
+This header defines macros to enable features.
+
+* `CGLA_RGBA_ACCESSORS` (disabled) : enables `r()`, `g()`, `b()`, `a()` accessors for `Vector<T, N>` and `rgb()`, `bgr()`, `bgra()` functions
+
+* `CGLA_STPQ_ACCESSORS` (disabled) : enables `s()`, `t()`, `p()`, `q()` accessors for `Vector<T, N>` and `st()`, `pq()` functions
+
+* `CGLA_OSTREAM_OVERLOADS` (enabled) : enables `std::ostream` overloads for `Vector<T, N>` and `Matrix<T, M, N>`
+
+* `CGLA_TYPE_ALIASES` (enabled) : enables type aliases for `Vector<T, N>` and `Matrix<T, M, N>`
+
 ### [cgla.hpp](include/cgla/cgla.hpp)
 
 This header is an all-in-one header.
