@@ -4,6 +4,20 @@ A (n-dimensional) linear algebra library for computer graphics.
 
 ## Documentation
 
+* [vector.hpp](#vectorhpp)
+    * [Constructors](#constructors-1)
+    * [Accessors](#accessors-1)
+    * [Operators](#operators-1)
+    * [Functions](#functions-1)
+* [matrix.hpp](#matrixhpp)
+    * [Constructors](#constructors-2)
+    * [Accessors](#accessors-2)
+    * [Operators](#operators-2)
+    * [Functions](#functions-2)
+* [transform.hpp](#transformhpp)
+* [config.hpp](#confighpp)
+* [cgla.hpp](#cglahpp)
+
 ### [vector.hpp](include/cgla/vector.hpp)
 
 `Vector<T, N>` defines a vector containing `N` scalar components of type `T`.
@@ -177,6 +191,34 @@ cgla::Vector<int, 5> v = cgla::swizzle<2, 2, 1, 0, 0>(u); // v = {3, 3, 2, 1, 1}
 * `pq` : shorthand for `swizzle<2, 3>`. See [config.hpp](#confighpp)
 
 ### [matrix.hpp](include/cgla/matrix.hpp)
+
+#### Constructors
+
+#### Accessors
+
+#### Operators
+
+#### Functions
+
+* `transpose` : returns the transpose of a matrix
+```cpp
+Matrix<T, N, M> transpose(Matrix<T, M, N> mat)
+```
+
+* `inverse` : returns the inverse of a matrix
+```cpp
+Matrix<T, M, M> inverse(Matrix<T, M, M> mat)
+```
+
+* `matrixCompMult` : returns the component-wise multiplication of two matrices
+```cpp
+Matrix<T, M, N> matrixCompMult(Matrix<T, M, N> x, Matrix<T, M, N> y);
+```
+
+* `outerProduct` : returns the outer product of two vectors
+```cpp
+Matrix<T, M, N> outerProduct(Vector<T, M> u, Vector<T, N> v)
+```
 
 ### [transform.hpp](include/cgla/transform.hpp)
 
