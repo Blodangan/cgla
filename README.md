@@ -224,6 +224,58 @@ m(0, 1) = 0; // m = {1, 2, 0, 4}
 
 #### Operators
 
+* Assignment
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2i n;
+n = m; // n = {1, 2, 3, 4}
+```
+
+* Unary operator `-`
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2i n = -m; // n = {-1, -2, -3, -4}
+```
+
+* Binary operators `+=`, `-=`, `+`, `-` between `Matrix<T, M, N>` work component-wise
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2i n{5, 3, 1, 0};
+m += n; // m = {6, 5, 4, 4}
+```
+
+* Binary operator `*` between `Matrix<T>` or between `Matrix<T>` and `Vector<T>` is the matrix multiplication (dimensions must agree)
+```cpp
+cgla::Matrix2x3i m{1, 2, 3, 0, 1, 2};
+cgla::Matrix3x2i n{0, 1, 0, 1, 1, 1};
+cgla::Matrix2i p = m * n; // p = {3, 0, 5, 4}
+
+cgla::Vector3i v{1, 2, 3};
+cgla::Vector2i w = m * v; // w = {10, 8}
+```
+
+* Binary operators `*=`, `/=`, `*`, `/` between `Matrix<T, M, N>` and scalar of type `U` work component-wise
+```cpp
+cgla::Matrix2f m{1.f, 2.f, 3.f, 4.f};
+cgla::Matrix2f n = 3 * m; // n = {3.f, 6.f, 9.f, 12.f}
+cgla::Matrix2f p = m / 2; // p = {0.5f, 1.f, 1.5f, 2.f}
+```
+
+* Comparison operators `==`, `!=`, `<`
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2i n{5, 6, 7, 8};
+bool eq = (m == n); // eq = false
+bool neq = (m != n); // neq = true
+bool lt = (m < n); // lt = true (lexicographic order)
+```
+
+* `<<` operator for `std::ostream`
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+std::cout << m; // prints ((1, 2), (3, 4))
+```
+
 #### Functions
 
 * `transpose` : returns the transpose of a matrix
