@@ -192,9 +192,35 @@ cgla::Vector<int, 5> v = cgla::swizzle<2, 2, 1, 0, 0>(u); // v = {3, 3, 2, 1, 1}
 
 ### [matrix.hpp](include/cgla/matrix.hpp)
 
+`Matrix<T, M, N>` defines a matrix containing `M` rows and `N` columns of scalar components of type `T`, in column-major order.
+
+Aliases are provided. M and N can be 2, 3, or 4 :
+* `MatrixMxNi`, `MatrixMi` : a matrix of `int`
+* `MatrixMxNf`, `MatrixMf` : a matrix of `float`
+* `MatrixMxNd`, `MatrixMd` : a matrix of `double`
+
 #### Constructors
 
 #### Accessors
+
+* Direct access to the underlying array
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+int* p = m.data();
+p[2] = 0; // m = {1, 2, 0, 4}
+```
+
+* Linear indexing
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+m[2] = 0; // m = {1, 2, 0, 4}
+```
+
+* Indexing with two subscripts (row, column)
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+m(0, 1) = 0; // m = {1, 2, 0, 4}
+```
 
 #### Operators
 
