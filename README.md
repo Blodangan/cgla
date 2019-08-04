@@ -201,6 +201,45 @@ Aliases are provided. M and N can be 2, 3, or 4 :
 
 #### Constructors
 
+* Default constructor
+```cpp
+cgla::Matrix2i m; // m = {0, 0, 0, 0}
+```
+
+* Constructible from `M * N` scalars of type `T` (column-major order)
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4}; // m = {1, 2, 3, 4}
+```
+
+* Copy constructor
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2i n{m}; // n = {1, 2, 3, 4}
+```
+
+* Explicitly constructible from a scalar of type `T` used to initialize the values along the diagonal
+```cpp
+cgla::Matrix2i m{1}; // m = {1, 0, 0, 1}
+```
+
+* Explicitly constructible from an array of `M * N` scalars of type `T`
+```cpp
+int values[4] = {1, 2, 3, 4};
+cgla::Matrix2i m{values}; // m = {1, 2, 3, 4}
+```
+
+* Explicitly constructible from an array of `N` `Vector<T, M>`
+```cpp
+cgla::Vector2i columns[2] = {{1, 2}, {3, 4}};
+cgla::Matrix2i m{columns}; // m = {1, 2, 3, 4}
+```
+
+* Explicitly constructible from a `Matrix<U, M, N>`
+```cpp
+cgla::Matrix2i m{1, 2, 3, 4};
+cgla::Matrix2f n{m}; // n = {1.f, 2.f, 3.f, 4.f}
+```
+
 #### Accessors
 
 * Direct access to the underlying array
