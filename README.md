@@ -339,17 +339,68 @@ Matrix<T, M, N> outerProduct(Vector<T, M> u, Vector<T, N> v)
 
 ### [transform.hpp](include/cgla/transform.hpp)
 
+* `translate` : returns a translation matrix
+```cpp
+Matrix<T, 4, 4> translate(Vector<T, 3> v)
+```
+
+* `scale` : returns a scaling matrix
+```cpp
+Matrix<T, 4, 4> scale(Vector<T, 3> v)
+Matrix<T, 4, 4> scale(T v) // uniform scaling
+```
+
+* `rotateX` : returns a rotation matrix around x-axis
+```cpp
+Matrix<T, 4, 4> rotateX(T angle) // angle in radians
+```
+
+* `rotateY` : returns a rotation matrix around y-axis
+```cpp
+Matrix<T, 4, 4> rotateY(T angle) // angle in radians
+```
+
+* `rotateZ` : returns a rotation matrix around z-axis
+```cpp
+Matrix<T, 4, 4> rotateZ(T angle) // angle in radians
+```
+
+* `rotate` : returns a rotation matrix around an arbitrary axis
+```cpp
+Matrix<T, 4, 4> rotate(T angle, Vector<T, 3> axis) // angle in radians
+```
+
+* `lookAt` : returns a look-at matrix
+```cpp
+Matrix<T, 4, 4> lookAt(Vector<T, 3> eye, Vector<T, 3> target, Vector<T, 3> up)
+```
+
+* `orthographic` : returns an orthographic projection matrix
+```cpp
+Matrix<T, 4, 4> orthographic(T left, T right, T bottom, T top, T near, T far)
+```
+
+* `frustum` : returns a projection matrix with viewing frustum
+```cpp
+Matrix<T, 4, 4> frustum(T left, T right, T bottom, T top, T near, T far)
+```
+
+* `perspective` : returns a perspective projection matrix
+```cpp
+Matrix<T, 4, 4> perspective(T fovy, T aspect, T near, T far) // fovy in radians
+```
+
 ### [config.hpp](include/cgla/config.hpp)
 
 This header defines macros to enable features.
 
-* `CGLA_RGBA_ACCESSORS` (disabled) : enables `r()`, `g()`, `b()`, `a()` accessors for `Vector<T, N>` and `rgb()`, `bgr()`, `bgra()` functions
+* `CGLA_RGBA_ACCESSORS` (disabled by default) : enables `r()`, `g()`, `b()`, `a()` accessors for `Vector<T, N>` and `rgb()`, `bgr()`, `bgra()` functions
 
-* `CGLA_STPQ_ACCESSORS` (disabled) : enables `s()`, `t()`, `p()`, `q()` accessors for `Vector<T, N>` and `st()`, `pq()` functions
+* `CGLA_STPQ_ACCESSORS` (disabled by default) : enables `s()`, `t()`, `p()`, `q()` accessors for `Vector<T, N>` and `st()`, `pq()` functions
 
-* `CGLA_OSTREAM_OVERLOADS` (enabled) : enables `std::ostream` overloads for `Vector<T, N>` and `Matrix<T, M, N>`
+* `CGLA_OSTREAM_OVERLOADS` (enabled by default) : enables `std::ostream` overloads for `Vector<T, N>` and `Matrix<T, M, N>`
 
-* `CGLA_TYPE_ALIASES` (enabled) : enables type aliases for `Vector<T, N>` and `Matrix<T, M, N>`
+* `CGLA_TYPE_ALIASES` (enabled by default) : enables type aliases for `Vector<T, N>` and `Matrix<T, M, N>`
 
 ### [cgla.hpp](include/cgla/cgla.hpp)
 
